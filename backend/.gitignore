@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar archivos generados automáticamente
+/target/
+/build/
+
+# Ignorar archivos sensibles
+config/credentials.json
+.env
+
+# Ignorar directorios de IDE
+.vscode/
+.idea/
