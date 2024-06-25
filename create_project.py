@@ -139,6 +139,9 @@ def setup_git_and_github():
     github_token = getpass.getpass("Introduce tu token de acceso personal de GitHub: ")
     repo_name = input("Introduce el nombre para tu nuevo repositorio en GitHub: ")
 
+    print(f"Intentando crear repositorio '{repo_name}' para el usuario '{github_username}'")
+    print(f"Los primeros 4 caracteres del token son: {github_token[:4]}...")
+
     # Crear repositorio en GitHub
     headers = {
         "Authorization": f"token {github_token}",
@@ -158,6 +161,8 @@ def setup_git_and_github():
     else:
         print(f"Error al crear el repositorio en GitHub. Código de estado: {response.status_code}")
         print(response.text)
+        print("Headers de la respuesta:")
+        print(json.dumps(dict(response.headers), indent=2))
 
 def setup_ci_cd():
     print("Configurando CI/CD con GitHub Actions...")

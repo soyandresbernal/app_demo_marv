@@ -8,10 +8,10 @@
 		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>app_m</groupId>
-	<artifactId>app_m</artifactId>
+	<groupId>demo_app_marv</groupId>
+	<artifactId>demo_app_marv</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>app_m</name>
+	<name>demo_app_marv</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
