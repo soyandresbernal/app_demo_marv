@@ -46,4 +46,4 @@ jobs:
         run: sleep 30
 
       - name: Run backend tests in Docker
-        run: docker-compose -f docker-compose.yml exec -T backend ./mvnw test
+        run: docker-compose -f docker-compose.yml exec backend ./mvnw test
