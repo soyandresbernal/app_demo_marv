@@ -1,3 +1,4 @@
 {
-  "cSpell.ignoreWords": ["mvnw"]
+  "cSpell.ignoreWords": ["mvnw"],
+  "java.compile.nullAnalysis.mode": "automatic"
 }

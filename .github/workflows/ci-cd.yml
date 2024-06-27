@@ -22,7 +22,7 @@ jobs:
       - name: Build and test backend
         run: |
           cd backend
-          ./mvnw clean test
+          ./mvnw clean package
 
       - name: Set up Node.js 20
         uses: actions/setup-node@v2
@@ -36,7 +36,14 @@ jobs:
           npm test
           npm run build
 
-      - name: Build Docker image for frontend
-        run: |
-          cd /home/serious/Projects/Auto_projects/frontend
-          docker build -t frontend-image .
+      - name: Build Docker images
+        run: docker-compose -f docker-compose.yml build
+
+      - name: Run Docker containers
+        run: docker-compose -f docker-compose.yml up -d
+
+      - name: Wait for containers to be ready
+        run: sleep 30
+
+      - name: Run backend tests in Docker
+        run: docker-compose -f docker-compose.yml exec -T backend ./mvnw test
