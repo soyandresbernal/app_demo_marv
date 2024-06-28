@@ -40,10 +40,18 @@ jobs:
         run: docker-compose -f docker-compose.yml build
 
       - name: Run Docker containers
-        run: docker-compose -f docker-compose.yml up -d
+        run: docker-compose -f docker-compose.yml up --build -d
+
+      - name: View Docker logs
+        if: failure()
+        run: docker-compose -f docker-compose.yml logs
 
       - name: Wait for containers to be ready
         run: sleep 30
 
       - name: Run backend tests in Docker
         run: docker-compose -f docker-compose.yml exec -T backend ./mvnw test
+
+      - name: Inspect Docker container
+        if: failure()
+        run: docker inspect app_demo_marv_backend_1
