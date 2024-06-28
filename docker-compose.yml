@@ -4,9 +4,13 @@ services:
     build: ./backend
     ports:
       - '8080:8080'
+    environment:
+      - JAVA_TOOL_OPTIONS=-Djava.awt.headless=true
   frontend:
     build: ./frontend
     ports:
       - '3000:3000'
+    environment:
+      - NODE_ENV=production
     depends_on:
       - backend

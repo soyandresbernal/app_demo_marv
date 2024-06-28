@@ -24,10 +24,18 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Set execute permissions for mvnw
+        run: chmod +x backend/mvnw
+
       - name: Build and test backend
         run: |
           cd backend
           ./mvnw clean package
+
+      - name: List target directory
+        run: |
+          cd backend
+          ls -la target
 
       - name: Build and test frontend
         run: |
@@ -37,17 +45,19 @@ jobs:
           npm run build
 
       - name: Build Docker images
-        run: docker-compose -f docker-compose.yml build
+        run: docker-compose -f docker-compose.yml build --no-cache
 
       - name: Run Docker containers
         run: docker-compose -f docker-compose.yml up --build -d
 
       - name: View Docker logs
-        if: failure()
         run: docker-compose -f docker-compose.yml logs
 
       - name: Wait for containers to be ready
         run: sleep 30
+
+      - name: Check container status
+        run: docker-compose -f docker-compose.yml ps
 
       - name: Run backend tests in Docker
         run: docker-compose -f docker-compose.yml exec -T backend ./mvnw test

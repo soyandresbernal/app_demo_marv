@@ -1,5 +1,5 @@
 # Usa una imagen base con Maven y JDK 17
-FROM maven:3.8.3-openjdk-17 AS build
+FROM maven:3.8.3-openjdk-22 AS build
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Usa una imagen base ligera con JDK 17 para la imagen final
-FROM openjdk:17-jdk-slim
+FROM openjdk:22-slim
 
 # Establece el directorio de trabajo
 WORKDIR /app
